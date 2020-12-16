@@ -1,11 +1,25 @@
 import Country from "./Country";
 
+const CountriesList = ({countrylist}) => {
+        if (!countrylist) return null;
+    const countryNodes = countrylist.map((entry) => {
+        let name = entry.name;
+        let population = entry.population;
+        let countryid = countrylist.indexOf(entry);
 
-const CountriesList = () => {
+
+    return (
+        <Country name={name} population={population} key={countryid} />
+    )
+
+    })
+
+
+
     return (
         <>
-        <h1>This is a list of counties</h1>
-        <Country />
+        <h1>This is a list of countries</h1>
+        <p>{countryNodes} </p>
         </>
     )
 }

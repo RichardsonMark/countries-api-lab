@@ -1,8 +1,10 @@
 
 
-const Country = () => {
+const Country = ({name, population}) => {
     return (
-        <h1>This is a country</h1>
+        <>
+        <p>Name:{name} - Population {population}</p>
+        </>
     )
 }
 
