@@ -1,28 +1,21 @@
 import Country from "./Country";
 
-const CountriesList = ({countrylist}) => {
-        if (!countrylist) return null;
-    const countryNodes = countrylist.map((entry) => {
-        let name = entry.name;
-        let population = entry.population;
-        let countryid = countrylist.indexOf(entry);
-        let flag = entry.flag
+const CountriesList = ({countrylist, onCountrySelected}) => {
+
+    const handleChange = event => {
+        onCountrySelected(event.target.value)
+      }
 
 
     return (
-        <Country name={name} population={population} flag={flag} key={countryid} />
-    )
-
-    })
-
-
-
-
-    return (
-        <>
-        <h1>This is a list of countries</h1>
-        <div className="country-container">{countryNodes} </div>
-        </>
+        <select defaultValue="" onChange={handleChange}>
+          <option value="" disabled>Choose a country</option>
+          {countrylist.map(countrylist => {
+            return (
+              <option key={countrylist.alpha3Code} value={countrylist.alpha3Code}>{countrylist.name}</option>
+            )
+          })}
+        </select>
     )
 }
 

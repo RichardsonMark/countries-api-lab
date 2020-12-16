@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import CountryList from "../components/CountryList";
+import Country from "../components/Country";
 
 
 const CountriesBox = () => {
 
 
-    const [countrylist, setCountryList] = useState([""]);
+    const [countrylist, setCountryList] = useState([]);
+    const [selectedCountryAlpha3Code, setSelectedCountryAlpha3Code] = useState('')
+
 
     const getCountryList = () => {
         console.log("getting country list info...")
@@ -23,22 +26,25 @@ const CountriesBox = () => {
     }, []);
 
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const button = document.querySelector(".more-info");
-        button.addEventListener('click', handleButtonClick)
-    });
-    
-    const handleButtonClick = function () {
-        const resultText = document.querySelector(".country-info");
-        resultText.textContent = `${this.name} ${this.population}`
-    };
 
+    
+    const handleCountrySelected = alpha3Code => {
+        setSelectedCountryAlpha3Code(alpha3Code)
+      }
+
+    const totalWorldPop = countrylist.reduce((accumulator, values) => {
+        return accumulator + values.population
+     }, 0)
+
+     const selectedCountry = countrylist.find(country => country.alpha3Code === selectedCountryAlpha3Code)
 
 
     return (
         <>
             <h1>Hello, World!</h1>
-            <CountryList countrylist={countrylist} />
+            <h4>Total World Population: {totalWorldPop}</h4>
+            <CountryList countrylist={countrylist} onCountrySelected={handleCountrySelected} />
+            <Country country={selectedCountry}  />            
         </>
     )
 }

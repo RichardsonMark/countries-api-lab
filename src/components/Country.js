@@ -2,12 +2,15 @@
 
 
 
-
-const Country = ({name, population}) => {
+const Country = ({country}) => {
+    if (!country) {
+        return null
+      }
     return (
         <div className="country-info">
-        <p>Name: <button className="more-info">{name}</button></p>
-        <p>Population {population}</p>
+        <p>Name: {country.name}</p>
+        <img src={country.flag} alt={`Flag of ${country.name}`}></img>
+        <p>Population {country.population}</p>
         </div>
     )
 }
