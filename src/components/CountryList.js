@@ -6,20 +6,22 @@ const CountriesList = ({countrylist}) => {
         let name = entry.name;
         let population = entry.population;
         let countryid = countrylist.indexOf(entry);
+        let flag = entry.flag
 
 
     return (
-        <Country name={name} population={population} key={countryid} />
+        <Country name={name} population={population} flag={flag} key={countryid} />
     )
 
     })
 
 
 
+
     return (
         <>
         <h1>This is a list of countries</h1>
-        <p>{countryNodes} </p>
+        <div className="country-container">{countryNodes} </div>
         </>
     )
 }

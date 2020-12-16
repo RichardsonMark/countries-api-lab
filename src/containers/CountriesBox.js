@@ -23,7 +23,15 @@ const CountriesBox = () => {
     }, []);
 
 
- 
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.querySelector(".more-info");
+        button.addEventListener('click', handleButtonClick)
+    });
+    
+    const handleButtonClick = function () {
+        const resultText = document.querySelector(".country-info");
+        resultText.textContent = `${this.name} ${this.population}`
+    };
 
 
 
